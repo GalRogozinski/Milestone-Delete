@@ -1,14 +1,17 @@
 FROM iotacafe/maven:3.5.4.oracle8u181.1.webupd8.1.1-1 as local_stage_build
 MAINTAINER galrogozinski@iota.org
 
-WORKDIR ~/IdeaProjects/iri
-COPY . /iri
 WORKDIR /iri
+RUN git clone https://github.com/iotaledger/iri.git
+WORKDIR /iri/iri
+RUN git checkout v1.5.6
 #install the dependency
-RUN mvn clean install -DskipTests
-WORKDIR ~/git/delete
-COPY . /deletemilestone
+RUN mvn install -DskipTests
+RUN mkdir -p /.m2/repository/iota/iri/1.5.6-RELEASE
+RUN cp target/iri*.jar /.m2/repository/iota/iri/1.5.6-RELEASE/
+
 WORKDIR /deletemilestone
+COPY . /deletemilestone
 RUN mvn clean package -DskipTests
 
 # execution image
