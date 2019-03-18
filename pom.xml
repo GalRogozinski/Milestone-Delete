@@ -8,6 +8,17 @@
     <artifactId>delete</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <properties>
+        <java-version>1.8</java-version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>local-maven-repo</id>
+            <url>file:///local-maven-repo</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.iota</groupId>
@@ -16,5 +27,49 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                    <testSource>${java-version}</testSource>
+                    <testTarget>${java-version}</testTarget>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>DeleteMilestone</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>1.6</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
