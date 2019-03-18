@@ -48,7 +48,7 @@ public class DeleteMilestone {
         persistPairs.add(new Pair<>(hash1, Transaction.class));
         persistPairs.add(new Pair<>(hash2, Transaction.class));
 
-        persistPairs.add(new Pair<>(new IntegerIndex(117254), Milestone.class));
+        persistPairs.add(new Pair<>(new IntegerIndex(1177254), Milestone.class));
 
         persistPairs.add(new Pair<>(hash1, StateDiff.class));
 
