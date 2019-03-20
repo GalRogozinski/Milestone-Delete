@@ -41,6 +41,7 @@ public class DeleteMilestone {
         Hash cooAddress = HashFactory.ADDRESS.create(TestnetConfig.Defaults.COORDINATOR_ADDRESS);
         Hash milestoneBundle = HashFactory.BUNDLE.create("ACDPJMQRDPRQYEUMPRMHPWAEABHHCBU9QDXETIQTKJH9FDAQYJHXMIC9EJSNZOTHVWYDHKGIAHZSMYXDW");
 
+        System.out.println("cleaning aggregates");
         cleanAggregates(hash1, hash2, cooAddress);
 
         List<Pair<Indexable, ? extends Class<? extends Persistable>>> persistPairs = new ArrayList<>();
@@ -63,7 +64,9 @@ public class DeleteMilestone {
         persistPairs.add(new Pair<>(hash1, Tag.class));
         persistPairs.add(new Pair<>(hash2, Tag.class));
 
+        System.out.println("Starting to delete milestone #1177254");
         rocksDBPersistenceProvider.deleteBatch(persistPairs);
+        System.out.println("Done");
     }
 
     private static void cleanAggregates(Indexable hash1, Indexable hash2, Hash cooAddress) throws Exception {
