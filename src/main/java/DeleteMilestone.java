@@ -16,7 +16,7 @@ public class DeleteMilestone {
 
     public static void main(String[] args) throws Exception {
         String dbPath = args.length == 0 ? "testnetdb" : args[0];
-        System.out.println("Running with args = [" + args + "]");
+        System.out.println("Running with dbpath " + dbPath);
 
         setUpDb(dbPath);
         deleteMilestone();
