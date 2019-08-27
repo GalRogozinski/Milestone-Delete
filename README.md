@@ -12,5 +12,5 @@ The milestone data is hard coded. One needs to change `milestone index`, `tail`,
 ### Docker
 ```
 docker build -t delete-milestone .
-docker run -it -v {db path}:/db {image_name} /db`
+docker run -it -v {db path}:/db delete-milestone /db`
 ```
