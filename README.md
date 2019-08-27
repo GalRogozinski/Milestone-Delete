@@ -1,6 +1,6 @@
 # Milestone-Delete
-Used to delete a specific milestone from devnet. It is only good for milestones that are made of a bundle of 2 transactions.
-The milestone data is hard coded. One needs to change `hash1`, `hash2` (tail and head of the milestone bundle) and `milestoneIndex`.
+Used to delete a specific milestones from devnet. It is only good for milestones that are made of a bundle of 2 transactions.
+The milestone data is hard coded. One needs to change `milestone index`, `tail`, `head`, `bundle hash`,`tip1` and `tip2`.
 
 ### Build
 `mvn clean package`
