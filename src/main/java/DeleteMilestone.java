@@ -36,10 +36,11 @@ public class DeleteMilestone {
     }
 
     public static void deleteMilestone() throws Exception {
-        Indexable hash1 = HashFactory.TRANSACTION.create("XTAKKEXASAOXQPMWUJWHWPNYVWRPASYUFVVXQGGYXKTVJZARUCXIZVONNUKLO9OSVEIBOQTAXJZR9F999");
-        Indexable hash2 = HashFactory.TRANSACTION.create("JDFDLDHNWTMALVJHQLI9ZJFWCWRLEBMH9OPHEWCNCPRLQAEOKNVKPOBXZWCBSJABIWLHXYVBWYC9IU999");
+        Indexable hash1 = HashFactory.TRANSACTION.create("BGMXKNQCFEMOSUAXSYFCPSNIXFEMSMSKX9S9HDUGIHXOAZXPUBDDN9VONWDGWEVVOMEOFEGEEIWQVO999");
+        Indexable hash2 = HashFactory.TRANSACTION.create("XFTQWDDPZHUQASHDTNJAOALZKPMJV9QQGXNBQTAUYME9DMMWXMGLIILHXWYHTV9GPFHGCOVREXLFAJ999");
         Hash cooAddress = HashFactory.ADDRESS.create(TestnetConfig.Defaults.COORDINATOR_ADDRESS);
-        Hash milestoneBundle = HashFactory.BUNDLE.create("ACDPJMQRDPRQYEUMPRMHPWAEABHHCBU9QDXETIQTKJH9FDAQYJHXMIC9EJSNZOTHVWYDHKGIAHZSMYXDW");
+        Hash milestoneBundle = HashFactory.BUNDLE.create("SL9NYRFFRUBEUYPDNYBOKCZQ9LLTSBBGHTIACR9PMPMCPKSBPFGRPZGHKVUCMZHFNBSMFWUOLIPTSDHPW");
+        int milestoneIndex = 1326769;
 
         System.out.println("cleaning aggregates");
         cleanAggregates(hash1, hash2, cooAddress);
@@ -49,7 +50,7 @@ public class DeleteMilestone {
         persistPairs.add(new Pair<>(hash1, Transaction.class));
         persistPairs.add(new Pair<>(hash2, Transaction.class));
 
-        persistPairs.add(new Pair<>(new IntegerIndex(1177254), Milestone.class));
+        persistPairs.add(new Pair<>(new IntegerIndex(milestoneIndex), Milestone.class));
 
         persistPairs.add(new Pair<>(hash1, StateDiff.class));
 
@@ -64,7 +65,7 @@ public class DeleteMilestone {
         persistPairs.add(new Pair<>(hash1, Tag.class));
         persistPairs.add(new Pair<>(hash2, Tag.class));
 
-        System.out.println("Starting to delete milestone #1177254");
+        System.out.println("Starting to delete milestone #" + milestoneIndex);
         rocksDBPersistenceProvider.deleteBatch(persistPairs);
         System.out.println("Done");
     }
@@ -75,8 +76,8 @@ public class DeleteMilestone {
         txsForAddress.set.remove(hash1);
         rocksDBPersistenceProvider.save(txsForAddress, cooAddress);
 
-        Hash branchHash1 = HashFactory.TRANSACTION.create("PNPAZXHSUFMQPBZJCLONLIZX9MYVVZCHMUCWRDRGI9IVGLL9QEFIKNJQ9OJDYTVLYYWPHYHLXEHBOW999");
-        Hash branchHash2 = HashFactory.TRANSACTION.create("KLLGYPLMBHMY9IJJPVXZCX9LWSKZKGYNHWHDA9GOIIHRBRVJIOSIBDRVPTZRTNMB9UMBRDKMOSFOMW999");
+        Hash branchHash1 = HashFactory.TRANSACTION.create("CNEQNBR99IYWKWLBDYSXADLQBCDPAWSIQCKFDANDMVJHSWYLIKYNSNREDGLPPXON9BFQZBKEHDBB9A999");
+        Hash branchHash2 = HashFactory.TRANSACTION.create("CNEQNBR99IYWKWLBDYSXADLQBCDPAWSIQCKFDANDMVJHSWYLIKYNSNREDGLPPXON9BFQZBKEHDBB9A999");
 
         Approvee approvers = (Approvee) rocksDBPersistenceProvider.get(Approvee.class, branchHash1);
         approvers.set.remove(hash1);
